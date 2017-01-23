@@ -1,4 +1,7 @@
 *.class
 *.iml
 .idea/**
-target/**
+/leetcode/target/**
+/leetcode/.idea/**
+/leetcode/*/im;
+
