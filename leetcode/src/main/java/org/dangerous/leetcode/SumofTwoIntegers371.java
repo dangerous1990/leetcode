@@ -10,7 +10,6 @@ public class SumofTwoIntegers371 {
         }
         int sum = a ^ b;
         int carry = (a & b) << 1;
-
         return getSum(sum, carry);
     }
 
