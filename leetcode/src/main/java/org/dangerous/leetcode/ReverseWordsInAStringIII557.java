@@ -9,22 +9,24 @@ import java.util.Stack;
  */
 public class ReverseWordsInAStringIII557 {
     /**
-     * 遍历字符串入栈，碰到空格，出栈,time limit
+     * 遍历字符串入栈，碰到空格，出栈
      *
      * @param s
      * @return
      */
     public String reverseWords(String s) {
         Stack<Character> stack = new Stack<>();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.toCharArray().length; i++) {
-            if (s.charAt(i) == ' ') {
+        int length = s.length();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            char x = s.charAt(i);
+            if (x == ' ') {
                 while (!stack.isEmpty()) {
                     sb.append(stack.pop());
                 }
                 sb.append(' ');
             } else {
-                stack.push(s.charAt(i));
+                stack.push(x);
             }
         }
         while (!stack.isEmpty()) {
@@ -42,7 +44,7 @@ public class ReverseWordsInAStringIII557 {
      */
     public String reverseWords1(String s) {
         String[] strs = s.split(" ");
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(s.length());
         for (int i = 0; i < strs.length; i++) {
             char[] chars = strs[i].toCharArray();
             for (int j = 0, k = chars.length - 1; j < k; j++, k--) {
