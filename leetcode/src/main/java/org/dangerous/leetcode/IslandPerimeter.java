@@ -14,20 +14,21 @@ public class IslandPerimeter {
                 }
                 if (grid[i][j] == 1) {
                     sum += 4;
+                    //判断上下左右是否挨着在1的方块,存在长度-1
+                    if (i != 0 && grid[i - 1][j] == 1) {
+                        sum -= 1;
+                    }
+                    if (i != grid.length - 1 && grid[i + 1][j] == 1) {
+                        sum -= 1;
+                    }
+                    if (j != grid[i].length - 1 && grid[i][j + 1] == 1) {
+                        sum -= 1;
+                    }
+                    if (j != 0 && grid[i][j - 1] == 1) {
+                        sum -= 1;
+                    }
                 }
-                //判断上下左右是否挨着在1的方块,存在长度-1
-                if (i != 0 && grid[i - 1][j] == 1) {
-                    sum -= 1;
-                }
-                if (i != grid.length - 1 && grid[i + 1][j] == 1) {
-                    sum -= 1;
-                }
-                if (j != grid[i].length - 1 && grid[i][j + 1] == 1) {
-                    sum -= 1;
-                }
-                if (j != 0 && grid[i][j - 1] == 1) {
-                    sum -= 1;
-                }
+
             }
         }
         return sum;
