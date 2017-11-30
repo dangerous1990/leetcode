@@ -2,6 +2,7 @@ package org.dangerous.leetcode;
 
 /**
  * https://leetcode.com/problems/island-perimeter/description/
+ * TODO 4个if放在外面 为什么速度会下降100ms
  * Created by limeng on 17-11-29.
  */
 public class IslandPerimeter {
