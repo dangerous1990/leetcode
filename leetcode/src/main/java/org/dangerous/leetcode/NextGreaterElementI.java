@@ -19,10 +19,12 @@ public class NextGreaterElementI {
     private int indexOf(int[] nums2, int value) {
         int index = -1;
         for (int i = 0; i < nums2.length; i++) {
+            //记录索引的位置
             if (value == nums2[i]) {
                 index = i;
                 continue;
             }
+            //从索引位置位置查询比value大的第一个数据返回
             if (index > -1 && nums2[i] > value) {
                 return nums2[i];
             }
