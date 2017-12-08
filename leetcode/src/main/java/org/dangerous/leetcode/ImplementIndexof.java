@@ -25,7 +25,6 @@ public class ImplementIndexof {
         }
         char[] strs = haystack.toCharArray();
         char[] search = needle.toCharArray();
-        //最大位置
         int max = strs.length - needle.length();
         for (int i = 0; i <= max; i++) {
             if (strs[i] == search[0]) {
