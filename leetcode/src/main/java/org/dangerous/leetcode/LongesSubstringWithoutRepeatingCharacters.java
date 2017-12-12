@@ -1,6 +1,8 @@
 package org.dangerous.leetcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +37,11 @@ public class LongesSubstringWithoutRepeatingCharacters {
             map.put(s.charAt(j), j + 1);
         }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        List list = new ArrayList<>(Integer.MAX_VALUE);
+
     }
 
 
