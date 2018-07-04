@@ -3,6 +3,8 @@ package org.dangerous.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -13,7 +15,10 @@ public class BinaryTreePaths {
         List<Integer> paths = new ArrayList<>();
         List<String> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack();
-        stack.push(root);
+        if(null != root){
+            stack.push(root);
+        }
+        Map<Integer,Integer> levels = new HashMap<>();
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
             paths.add(node.val);
@@ -28,7 +33,6 @@ public class BinaryTreePaths {
             if (null != node.left) {
                 stack.push(node.left);
             }
-
         }
         return result;
     }
