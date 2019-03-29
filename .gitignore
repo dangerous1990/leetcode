@@ -4,4 +4,7 @@
 /leetcode/target/**
 /leetcode/.idea/**
 /leetcode/*/im;
-
+.vscode/
+/leetcode/.classpath
+/leetcode/.project
+/leetcode/.settings/**
