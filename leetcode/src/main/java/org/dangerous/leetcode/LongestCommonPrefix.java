@@ -14,10 +14,7 @@ public class LongestCommonPrefix {
         for (int i = 0; i < maxLength; i++) {
             char expect = strs[0].charAt(i);
             for (String s : strs) {
-                if (i > s.length()) {
-                    return sb.toString();
-                }
-                if (expect != s.charAt(i)) {
+                if (i >= s.length() || expect != s.charAt(i)) {
                     return sb.toString();
                 }
             }
