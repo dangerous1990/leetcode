@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * https://leetcode.com/problems/3sum/submissions/
+ * https://leetcode.com/problems/3sum
  */
 public class ThreeSum15 {
     /**
