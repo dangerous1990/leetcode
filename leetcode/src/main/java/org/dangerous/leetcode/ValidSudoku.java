@@ -22,10 +22,8 @@ public class ValidSudoku {
                 } else {
                     columnSet.add(board[j][i]);
                 }
-                if (i % 3 == 1 && j % 3 == 1) {
-                    if (!validSubBox(i, j, board)) {
-                        return false;
-                    }
+                if (i % 3 == 1 && j % 3 == 1 && !validSubBox(i, j, board)) {
+                    return false;
                 }
             }
         }
@@ -43,6 +41,6 @@ public class ValidSudoku {
                 }
             }
         }
-        return set.size() >= 2;
+        return true;
     }
 }
