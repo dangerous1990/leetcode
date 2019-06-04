@@ -1,46 +1,23 @@
 package org.dangerous.leetcode;
 
+/**
+ * https://leetcode.com/problems/powx-n/
+ */
 public class PowxN {
 
     public double myPow(double x, int n) {
-        if (x == 1 || n == 0) {
-            return 1;
-        }
-        if (x == -1 && n < 0) {
-            return 1;
-        }
-        if (x == -1) {
-            return -1;
-        }
-        if (n == 1) {
-            return x;
-        }
-        if (n == -1) {
-            return 1 / x;
-        }
-        if (n == Integer.MAX_VALUE || n == Integer.MIN_VALUE) {
-            return 0;
-        }
-        boolean negative = n < 0;
-        n = Math.abs(n);
+        if (n == 0) return 1;
+        long absN = n;
         if (n < 0) {
-            n = Integer.MAX_VALUE;
+            absN = -(long)n;
+            x = 1 / x;
         }
-        double result = x;
-        int temp = 1;
-        while (temp <= n) {
-            if (temp * 2 < 0 || temp * 2 > n) {
-                break;
-            }
-            if (temp * 2 <= n) {
-                temp *= 2;
-                result *= result;
-            }
+        double ans = 1;
+        while (absN > 0) {
+            if ((absN & 1) == 1) ans *= x;
+            x *= x;
+            absN >>= 1;
         }
-        int last = n - temp;
-        while (last-- > 0) {
-            result *= x;
-        }
-        return negative ? 1 / result : result;
+        return ans;
     }
 }
