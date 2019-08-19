@@ -16,12 +16,11 @@ public class CombinationSum {
                 metrics[j][i] = candidates[i];
             }
         }
-        backtrace(new ArrayList<>(), 0, metrics, target, 0);
+        backtrace(new ArrayList<>(), 0, metrics, target, 0, 0);
         return result;
     }
 
-    public void backtrace(List<Integer> x, int index, int[][] metrics, int target, int flag) {
-        int sum = x.stream().reduce(0, (a, b) -> a + b);
+    public void backtrace(List<Integer> x, int index, int[][] metrics, int target, int prevIndex, int sum) {
         if (sum > target) {
             return;
         }
@@ -33,9 +32,11 @@ public class CombinationSum {
             return;
         }
 
-        for (int i = flag; i < metrics[index].length; i++) {
+        for (int i = prevIndex; i < metrics[index].length; i++) {
             x.add(metrics[index][i]);
-            backtrace(x, index + 1, metrics, target, i);
+            sum += metrics[index][i];
+            backtrace(x, index + 1, metrics, target, i, sum);
+            sum -= metrics[index][i];
             x.remove(x.size() - 1);
         }
     }
