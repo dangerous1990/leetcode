@@ -10,17 +10,11 @@ public class CombinationSum {
     List<List<Integer>> result = new ArrayList<>();
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        int[][] metrics = new int[target][candidates.length];
-        for (int i = 0; i < candidates.length; i++) {
-            for (int j = 0; j < target; j++) {
-                metrics[j][i] = candidates[i];
-            }
-        }
-        backtrace(new ArrayList<>(), 0, metrics, target, 0, 0);
+        backtrace(new ArrayList<>(), 0, candidates, target, 0, 0);
         return result;
     }
 
-    public void backtrace(List<Integer> x, int index, int[][] metrics, int target, int prevIndex, int sum) {
+    public void backtrace(List<Integer> x, int index, int[] candidates, int target, int prevIndex, int sum) {
         if (sum > target) {
             return;
         }
@@ -28,15 +22,11 @@ public class CombinationSum {
             result.add(new ArrayList<>(x));
             return;
         }
-        if (metrics.length == x.size()) {
-            return;
-        }
-
-        for (int i = prevIndex; i < metrics[index].length; i++) {
-            x.add(metrics[index][i]);
-            sum += metrics[index][i];
-            backtrace(x, index + 1, metrics, target, i, sum);
-            sum -= metrics[index][i];
+        for (int i = prevIndex; i < candidates.length; i++) {
+            x.add(candidates[i]);
+            sum += candidates[i];
+            backtrace(x, index + 1, candidates, target, i, sum);
+            sum -= candidates[i];
             x.remove(x.size() - 1);
         }
     }
