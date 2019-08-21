@@ -1,6 +1,5 @@
 package org.dangerous.leetcode;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,9 +27,9 @@ public class LetterTilePossibilities {
                 continue;
             }
             sb.append(c);
-            char[] n = Arrays.copyOf(tiles, tiles.length);
-            n[i] = '0';
-            backtrace(index + 1, n, result, sb);
+            tiles[i] = '0';
+            backtrace(index + 1, tiles, result, sb);
+            tiles[i] = c;
             sb.deleteCharAt(sb.length() - 1);
         }
     }
