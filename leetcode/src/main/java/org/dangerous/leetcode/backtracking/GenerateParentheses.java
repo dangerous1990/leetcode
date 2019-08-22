@@ -1,6 +1,7 @@
 package org.dangerous.leetcode.backtracking;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * https://leetcode.com/problems/generate-parentheses
@@ -8,40 +9,24 @@ import java.util.*;
 public class GenerateParentheses {
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
-        backtrace(n * 2, 0, "()", result, new StringBuilder(), new LinkedList<>(), new HashMap<>());
+        backtrack(n, n, result, new StringBuilder());
         return result;
     }
 
 
-    public void backtrace(int size, int index, String pair, List<String> result, StringBuilder path, LinkedList<Character> stack, Map<Character, Integer> count) {
-        if (index == size) {
-            if (stack.isEmpty()) {
-                result.add(path.toString());
-            }
+    public void backtrack(int left, int right, List<String> result, StringBuilder path) {
+        if (left == 0 && right == 0) {
+            result.add(path.toString());
             return;
         }
-        for (int i = 0; i < pair.length(); i++) {
-            char c = pair.charAt(i);
-            if (c == ')' && stack.isEmpty()) {
-                return;
-            }
-            if (count.getOrDefault(c, 0) == size / 2) {
-                continue;
-            }
-            if (c == '(') {
-                stack.push('(');
-            }
-            LinkedList<Character> s = new LinkedList<>(stack);
-            if (c == ')') {
-                s.pop();
-            }
-            count.put(c, count.getOrDefault(c, 0) + 1);
-            path.append(c);
-            backtrace(size, index + 1, pair, result, path, s, count);
-            count.put(c, count.get(c) - 1);
-            if (c == '(') {
-                stack.pop();
-            }
+        if (left > 0) {
+            path.append("(");
+            backtrack(left - 1, right, result, path);
+            path.deleteCharAt(path.length() - 1);
+        }
+        if (right > left) {
+            path.append(")");
+            backtrack(left, right - 1, result, path);
             path.deleteCharAt(path.length() - 1);
         }
     }
