@@ -18,8 +18,7 @@ public class BeautifulArrangement {
         }
         for (int i = 0; i < N; i++) {
             int pos = 1 << i;
-            int b = (path & pos) >> i;
-            if (b == 1) {
+            if ((path & pos) > 0) {
                 continue;
             }
             int ith = i + 1;
@@ -35,6 +34,6 @@ public class BeautifulArrangement {
     }
 
     public static void main(String[] args) {
-        System.out.println(new BeautifulArrangement().countArrangement(3));
+        System.out.println(new BeautifulArrangement().countArrangement(2));
     }
 }
