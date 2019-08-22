@@ -7,11 +7,11 @@ public class BeautifulArrangement {
     private int count;
 
     public int countArrangement(int N) {
-        backtrack(0, N, 0, 0);
+        backtrack(0, N,  0);
         return count;
     }
 
-    public void backtrack(int index, int N, int arrayCount, int path) {
+    public void backtrack(int index, int N, int path) {
         if (N == index) {
             count++;
             return;
@@ -22,18 +22,17 @@ public class BeautifulArrangement {
                 continue;
             }
             int ith = i + 1;
-            int ix = arrayCount + 1;
+            int ix = index + 1;
             if (ix % ith == 0 || ith % ix == 0) {
-                arrayCount++;
                 path = path | pos;
-                backtrack(index + 1, N, arrayCount, path);
-                arrayCount--;
+                backtrack(index + 1, N, path);
                 path = path ^ pos;
             }
         }
     }
 
     public static void main(String[] args) {
+        System.out.println(new BeautifulArrangement().countArrangement(3));
         System.out.println(new BeautifulArrangement().countArrangement(2));
     }
 }
