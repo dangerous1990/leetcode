@@ -23,13 +23,11 @@ public class CombinationSumIII {
             return;
         }
         for (int i = prevIndex; i < candidates.length; i++) {
-            if (!x.contains(candidates[i])) {
-                x.add(candidates[i]);
-                sum += candidates[i];
-                backtrace(x, index + 1, length, candidates, target, i, sum);
-                sum -= candidates[i];
-                x.remove(x.size() - 1);
-            }
+            x.add(candidates[i]);
+            sum += candidates[i];
+            backtrace(x, index + 1, length, candidates, target, i + 1, sum);
+            sum -= candidates[i];
+            x.remove(x.size() - 1);
         }
     }
 
