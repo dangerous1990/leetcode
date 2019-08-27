@@ -1,4 +1,4 @@
-package org.dangerous.leetcode;
+package org.dangerous.leetcode.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
