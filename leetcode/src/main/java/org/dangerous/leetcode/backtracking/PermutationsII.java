@@ -11,11 +11,11 @@ import java.util.Set;
 public class PermutationsII {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        backtrace(0, nums, result, new ArrayList<>());
+        backtrack(0, nums, result, new ArrayList<>());
         return result;
     }
 
-    public void backtrace(int index, int[] nums, List<List<Integer>> result, List<Integer> path) {
+    public void backtrack(int index, int[] nums, List<List<Integer>> result, List<Integer> path) {
         if (index == nums.length) {
             result.add(new ArrayList<>(path));
             return;
@@ -25,7 +25,7 @@ public class PermutationsII {
             if (appeared.add(nums[i])) {
                 path.add(nums[i]);
                 swap(nums, index, i);
-                backtrace(index + 1, nums, result, path);
+                backtrack(index + 1, nums, result, path);
                 path.remove(path.size() - 1);
                 swap(nums, index, i);
             }

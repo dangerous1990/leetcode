@@ -10,11 +10,11 @@ public class CombinationSumII {
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         Arrays.sort(candidates);
-        backtrace(new ArrayList<>(), 0, candidates, target, 0);
+        backtrack(new ArrayList<>(), 0, candidates, target, 0);
         return result;
     }
 
-    public void backtrace(List<Integer> x, int index, int[] candidates, int target, int prevIndex) {
+    public void backtrack(List<Integer> x, int index, int[] candidates, int target, int prevIndex) {
         if (target < 0) {
             return;
         }
@@ -31,7 +31,7 @@ public class CombinationSumII {
                 int cur = candidates[i];
                 x.add(candidates[i]);
                 swap(candidates, index, i);
-                backtrace(x, index + 1, candidates, target - cur, i + 1);
+                backtrack(x, index + 1, candidates, target - cur, i + 1);
                 swap(candidates, index, i);
                 x.remove(x.size() - 1);
             }

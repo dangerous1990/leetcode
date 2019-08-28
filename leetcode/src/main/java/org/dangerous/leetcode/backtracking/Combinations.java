@@ -10,12 +10,12 @@ public class Combinations {
 
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res = new ArrayList<>();
-        backtrace(res, new ArrayList<>(k), 0, k, n, 0);
+        backtrack(res, new ArrayList<>(k), 0, k, n, 0);
         return res;
     }
 
 
-    public void backtrace(List<List<Integer>> res, List<Integer> comb, int index, int k, int n, int prevIndex) {
+    public void backtrack(List<List<Integer>> res, List<Integer> comb, int index, int k, int n, int prevIndex) {
         if (index > k) {
             return;
         }
@@ -25,7 +25,7 @@ public class Combinations {
         }
         for (int i = prevIndex; i < n; i++) {
             comb.add(i + 1);
-            backtrace(res, comb, index + 1, k, n, i + 1);
+            backtrack(res, comb, index + 1, k, n, i + 1);
             comb.remove(comb.size() - 1);
         }
     }

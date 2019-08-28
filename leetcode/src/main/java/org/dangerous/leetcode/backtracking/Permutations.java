@@ -10,11 +10,11 @@ import java.util.List;
 public class Permutations {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new LinkedList<>();
-        backtrace(0, nums, result, new ArrayList<>());
+        backtrack(0, nums, result, new ArrayList<>());
         return result;
     }
 
-    public void backtrace(int index, int[] nums, List<List<Integer>> result, List<Integer> path) {
+    public void backtrack(int index, int[] nums, List<List<Integer>> result, List<Integer> path) {
         if (index == nums.length) {
             result.add(new ArrayList<>(path));
             return;
@@ -24,7 +24,7 @@ public class Permutations {
                 continue;
             }
             path.add(nums[i]);
-            backtrace(index + 1, nums, result, path);
+            backtrack(index + 1, nums, result, path);
             path.remove(path.size() - 1);
         }
     }

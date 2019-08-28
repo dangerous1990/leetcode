@@ -12,11 +12,11 @@ public class PermutationSequence {
         for (int i = 0; i < n; i++) {
             candidates[i] = i + 1;
         }
-        backtrace(new StringBuilder(n), 0, k, candidates, new int[n]);
+        backtrack(new StringBuilder(n), 0, k, candidates, new int[n]);
         return result;
     }
 
-    public void backtrace(StringBuilder sb, int index, int k, int[] candidates, int[] path) {
+    public void backtrack(StringBuilder sb, int index, int k, int[] candidates, int[] path) {
         if (size > k) {
             return;
         }
@@ -33,7 +33,7 @@ public class PermutationSequence {
             }
             sb.append(candidates[i]);
             path[i] = 1;
-            backtrace(sb, index + 1, k, candidates, path);
+            backtrack(sb, index + 1, k, candidates, path);
             sb.deleteCharAt(sb.length() - 1);
             path[i] = 0;
         }

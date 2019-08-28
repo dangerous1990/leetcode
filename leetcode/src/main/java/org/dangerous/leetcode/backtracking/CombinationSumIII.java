@@ -10,11 +10,11 @@ public class CombinationSumIII {
     List<List<Integer>> result = new ArrayList<>();
 
     public List<List<Integer>> combinationSum3(int k, int target) {
-        backtrace(new ArrayList<>(), 0, k, new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, target, 0);
+        backtrack(new ArrayList<>(), 0, k, new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, target, 0);
         return result;
     }
 
-    public void backtrace(List<Integer> x, int index, int length, int[] candidates, int target, int prevIndex) {
+    public void backtrack(List<Integer> x, int index, int length, int[] candidates, int target, int prevIndex) {
         if (target < 0) {
             return;
         }
@@ -27,7 +27,7 @@ public class CombinationSumIII {
                 return;
             }
             x.add(candidates[i]);
-            backtrace(x, index + 1, length, candidates, target - candidates[i], i + 1);
+            backtrack(x, index + 1, length, candidates, target - candidates[i], i + 1);
             x.remove(x.size() - 1);
         }
     }
