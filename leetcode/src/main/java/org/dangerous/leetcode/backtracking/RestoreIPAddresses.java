@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * https://leetcode.com/problems/restore-ip-addresses
  */
-public class RestoreIPAdresses {
+public class RestoreIPAddresses {
 
     public List<String> restoreIpAddresses(String s) {
         List<String> result = new ArrayList<>();
@@ -39,7 +39,7 @@ public class RestoreIPAdresses {
     }
 
     public static void main(String[] args) {
-        System.out.println(new RestoreIPAdresses().restoreIpAddresses("25525511135"));
-        System.out.println(new RestoreIPAdresses().restoreIpAddresses("010010"));
+        System.out.println(new RestoreIPAddresses().restoreIpAddresses("25525511135"));
+        System.out.println(new RestoreIPAddresses().restoreIpAddresses("010010"));
     }
 }
