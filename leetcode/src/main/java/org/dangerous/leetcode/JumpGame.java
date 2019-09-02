@@ -30,12 +30,20 @@ public class JumpGame {
                 continue;
             }
             visited[pos] = true;
-            if (nums[pos] == 0) {
-                continue;
-            }
             if (jump(pos, nums, visited)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean canJump2(int[] nums) {
+        if(nums.length <= 1) return true;
+        int max = 0;
+        for(int i = 0; i < nums.length - 1; i++){
+            if(max < i) break; // There is no way to jump to this location
+            if(nums[i] + i >= nums.length - 1) return true; // You can jump directly from this location to the end
+            max = Math.max(max, nums[i] + i); // Maximum location that can be reached since the begining
         }
         return false;
     }
