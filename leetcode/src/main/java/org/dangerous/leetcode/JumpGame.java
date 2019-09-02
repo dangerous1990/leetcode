@@ -13,7 +13,8 @@ public class JumpGame {
     }
 
     /**
-     * 递归
+     * dfs
+     *
      * @param index
      * @param nums
      * @param visited
@@ -21,42 +22,23 @@ public class JumpGame {
      */
     public boolean jump(int index, int[] nums, boolean[] visited) {
         for (int i = nums[index]; i > 0; i--) {
-            if (index + i >= nums.length - 1) {
+            int pos = index + i;
+            if (pos >= nums.length - 1) {
                 return true;
             }
-            if (visited[index + i]) {
+            if (visited[pos]) {
                 continue;
             }
-            visited[index] = true;
-            if (nums[index] == 0) {
+            visited[pos] = true;
+            if (nums[pos] == 0) {
                 continue;
             }
-            if (jump(index + i, nums, visited)) {
+            if (jump(pos, nums, visited)) {
                 return true;
             }
         }
         return false;
     }
-
-//    public void iter(int[] nums, boolean[] visited){
-//        for(int i =0;i <nums.length; ){
-//            for (int i = nums[index]; i > 0; i--) {
-//                if (index + i >= nums.length - 1) {
-//                    return true;
-//                }
-//                if (visited[index + i]) {
-//                    continue;
-//                }
-//                visited[index] = true;
-//                if (nums[index] == 0) {
-//                    continue;
-//                }
-//                if (jump(index + i, nums, visited)) {
-//                    return true;
-//                }
-//            }
-//        }
-//    }
 
     public static void main(String[] args) {
         System.out.println(new JumpGame().canJump(new int[]{2, 3, 1, 1, 4})); // true
