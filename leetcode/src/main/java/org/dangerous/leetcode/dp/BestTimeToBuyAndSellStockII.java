@@ -14,14 +14,14 @@ public class BestTimeToBuyAndSellStockII {
      * @param prices
      * @return
      */
-    public int maxProfit(int[] prices) {
+    public int maxProfit2(int[] prices) {
         if (prices.length < 2) {
             return 0;
         }
         int l = prices.length;
         int n = l / 2;
         int profit = 0;
-        for (int i = 1; i <= n; i++) { // transactions
+        for (int i = n; i > 0; i--) { // transactions
             int subProfit = 0;
             int lastSellPos = 0;
             for (int j = 1; j <= i; j++) { // ith transactions
@@ -50,6 +50,52 @@ public class BestTimeToBuyAndSellStockII {
             profit = Math.max(profit, subProfit);
         }
         return profit;
+    }
+
+    /**
+     * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/solution/
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit(int[] prices) {
+        int maxprofit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1])
+                maxprofit += prices[i] - prices[i - 1];
+        }
+        return maxprofit;
+    }
+
+    /**
+     * Peak Valley
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit3(int[] prices) {
+        int n = prices.length;
+        if (n < 2) {
+            return 0;
+        }
+        int i = 0;
+        int valley = prices[0];
+        int peak = prices[0];
+        int maxprofit = 0;
+        while (i < n - 1) {
+            // 找谷底
+            while (i < n - 1 && prices[i] >= prices[i + 1]) {
+                i++;
+            }
+            valley = prices[i];
+            // 找山峰
+            while (i < n - 1 && prices[i] <= prices[i + 1]) {
+                i++;
+            }
+            peak = prices[i];
+            maxprofit += peak - valley;
+        }
+        return maxprofit;
     }
 
     public static void main(String[] args) {
