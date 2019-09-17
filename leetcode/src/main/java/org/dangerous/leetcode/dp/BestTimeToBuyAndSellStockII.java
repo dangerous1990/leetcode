@@ -6,6 +6,10 @@ package org.dangerous.leetcode.dp;
 public class BestTimeToBuyAndSellStockII {
     /**
      * 暴力解法 超时 time limit exceeded
+     * ith |begin       |end
+     * 1   |1           |1/3 length
+     * 2   |lastSellPos |2/3 length
+     * 3   |lastSellPos |length
      *
      * @param prices
      * @return
@@ -27,9 +31,12 @@ public class BestTimeToBuyAndSellStockII {
                 if (begin >= l) {
                     break;
                 }
-                int buy = prices[lastSellPos + 1];
-                for (int k = begin; k < l && k <= end; k++) { // search begin end
-                    // find min price before i
+                int buy = prices[begin];
+                for (int k = begin; k < l && k <= end; k++) {
+                    if (prices[k - 1] == prices[k]) {
+                        continue;
+                    }
+                    // find min price before k
                     buy = Math.min(buy, prices[k - 1]);
                     // max = max(current-min price,max)
                     // find max profit and last sell pos
