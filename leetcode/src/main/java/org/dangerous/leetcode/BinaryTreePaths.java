@@ -1,41 +1,34 @@
 package org.dangerous.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
 
 /**
- * Created by limeng on 18-6-22.
+ * https://leetcode.com/problems/binary-tree-paths
  */
 public class BinaryTreePaths {
     public List<String> binaryTreePaths(TreeNode root) {
-        List<Integer> paths = new ArrayList<>();
+        List<Integer> paths = new LinkedList<>();
         List<String> result = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack();
-        if(null != root){
-            stack.push(root);
-        }
-        Map<Integer,Integer> levels = new HashMap<>();
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            paths.add(node.val);
-            if (node.left == null && node.right == null) {
-                result.add(buildPath(paths));
-                paths.clear();
-                paths.add(root.val);
-            }
-            if (null != node.right) {
-                stack.push(node.right);
-            }
-            if (null != node.left) {
-                stack.push(node.left);
-            }
-        }
+
+        dfs(root, paths, result);
         return result;
     }
+
+    private void dfs(TreeNode root, List<Integer> paths, List<String> result) {
+        if (root == null) {
+            return;
+        }
+        paths.add(root.val);
+        if (root.right == null && root.left == null) {
+            result.add(buildPath(paths));
+            return;
+        }
+        dfs(root.left, new LinkedList<>(paths), result);
+        dfs(root.right, new LinkedList<>(paths), result);
+    }
+
 
     private String buildPath(List<Integer> paths) {
         StringBuilder sb = new StringBuilder();
@@ -46,15 +39,12 @@ public class BinaryTreePaths {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(0);
-        TreeNode left =  new TreeNode(1);
-        TreeNode right =  new TreeNode(2);
-        left.left = new TreeNode(3);
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(3);
+        left.left = new TreeNode(5);
         root.left = left;
         root.right = right;
-        BinaryTreePaths btp = new BinaryTreePaths();
-        List<String> result = btp.binaryTreePaths(root);
-        System.out.println(result);
-        Arrays.toString(result.toArray());
+        System.out.println(new BinaryTreePaths().binaryTreePaths(root));
     }
 }
