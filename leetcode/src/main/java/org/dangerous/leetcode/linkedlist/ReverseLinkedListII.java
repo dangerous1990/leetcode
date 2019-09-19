@@ -9,16 +9,13 @@ public class ReverseLinkedListII {
         if (m == n) {
             return head;
         }
-        // 3 part
+        // 2 part
         // part one before m
         ListNode prev = new ListNode(0);
         ListNode fakePrevHead = prev;
         // part two reverse m n
         ListNode reverseHead = null;
         ListNode reverseTail = null;
-        // part three after n
-        ListNode tail = new ListNode(0);
-        ListNode fakeTail = tail;
         int count = 0;
         while (head != null) {
             count++;
@@ -36,8 +33,8 @@ public class ReverseLinkedListII {
                 prev = head;
             }
             if (count > n) {
-                tail.next = head;
-                tail = head;
+                reverseTail.next = head;
+                reverseTail = head;
             }
             head = temp;
         }
@@ -46,8 +43,6 @@ public class ReverseLinkedListII {
         }
         // concat reverse
         prev.next = reverseHead;
-        // concat after m
-        reverseTail.next = fakeTail.next;
         return fakePrevHead.next;
     }
 
