@@ -5,15 +5,15 @@ package org.dangerous.leetcode;
  */
 public class BalancedBinaryTree {
     public boolean isBalanced(TreeNode root) {
-        return travel(root, 0) != -1;
+        return travel(root) != -1;
     }
 
-    private int travel(TreeNode root, int depth) {
+    private int travel(TreeNode root) {
         if (root == null) {
-            return depth;
+            return 0;
         }
-        int left = travel(root.left, depth);
-        int right = travel(root.right, depth);
+        int left = travel(root.left);
+        int right = travel(root.right);
         if (left == -1 || right == -1) {
             return -1;
         }
