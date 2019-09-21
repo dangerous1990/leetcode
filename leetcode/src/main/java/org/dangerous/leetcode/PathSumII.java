@@ -19,17 +19,17 @@ public class PathSumII {
     private void travel(TreeNode root, int sum, int equal, List<Integer> list, List<List<Integer>> result) {
         sum += root.val;
         list.add(root.val);
-        if (root.left == null && root.right == null) {
-            if (sum == equal) {
-                result.add(list);
-            }
+        if (root.left == null && root.right == null && sum == equal) {
+            result.add(new ArrayList<>(list));
+            list.remove(list.size() - 1);
             return;
         }
         if (root.left != null) {
-            travel(root.left, sum, equal, new ArrayList<>(list), result);
+            travel(root.left, sum, equal, list, result);
         }
         if (root.right != null) {
-            travel(root.right, sum, equal, new ArrayList<>(list), result);
+            travel(root.right, sum, equal,list, result);
         }
+        list.remove(list.size() - 1);
     }
 }
