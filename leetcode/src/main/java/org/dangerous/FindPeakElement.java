@@ -14,6 +14,6 @@ public class FindPeakElement {
                 return i;
             }
         }
-        return nums.length;
+        return nums.length - 1;
     }
 }
