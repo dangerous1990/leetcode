@@ -19,6 +19,9 @@ public class TreeNode {
         queue.push(this);
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
+            if (node ==null) {
+                System.out.println("null");
+            }
             if (null != node) {
                 System.out.println(node.val);
                 queue.push(node.left);
@@ -26,4 +29,5 @@ public class TreeNode {
             }
         }
     }
+
 }
